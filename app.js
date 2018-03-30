@@ -46,7 +46,7 @@ weatherApp.controller("forecastController", [
   "cityService",
   function($scope, $resource, $routeParams, cityService) {
     $scope.city = cityService.city;
-    $scope.days = $routeParams.days || 2;
+    $scope.days = $routeParams.days || '2';
 
     $scope.weatherAPI = $resource(
       "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=3ba8d599d762cb632daacd86b2cabddd",
@@ -67,3 +67,16 @@ weatherApp.controller("forecastController", [
     };
   }
 ]);
+
+// DIRECTIVES
+weatherApp.directive("temperature", function() {
+    return {
+        restrict: "E",
+        templateUrl: "directives/temperature.html",
+        replace: true,
+        scope: {
+            date: "@",
+            temp: "@"
+        }
+    }
+}) 
